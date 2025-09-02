@@ -1,0 +1,42 @@
+{
+  "xsappname": "treasuryai-asst-v3",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Callback",
+      "description": "Callback access",
+      "grant-as-authority-to-apps": ["xsuaa"]
+    },
+    {
+      "name": "$XSAPPNAME.write",
+      "description": "Write access"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Read-only access",
+      "scope-references": ["$XSAPPNAME.Callback"]
+    }
+  ],
+"oauth2-configuration": {
+    "token-validity": 3600,
+    "credential-types": [
+      "instance-secret",
+      "x509"
+    ],
+    "grant-types": [
+      "password",
+      "authorization_code",
+      "client_credentials",
+      "refresh_token",
+      "user_token",
+      "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "client_x509"
+    ],
+    "redirect-uris": [
+      "https://*.hana.ondemand.com/callback"
+    ]
+  }
+}

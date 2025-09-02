@@ -1,0 +1,109 @@
+VCAP_SERVICES: {
+  "destination": [
+    {
+      "binding_guid": "2943c68e-fa78-4f35-a8c4-0e6dddad03f0",
+      "binding_name": null,
+      "credentials": {
+        "clientid": "sb-clonea301549b5231465e8ab2e240f7241a7b!b5156|destination-xsappname!b5",
+        "clientsecret": "2943c68e-fa78-4f35-a8c4-0e6dddad03f0$KLqIMBxXUutiq-_s1DEV--VGm0Ali97XZHDFY0B7koM=",
+        "credential-type": "binding-secret",
+        "identityzone": "core-foundational-12982zqn",
+        "instanceid": "a301549b-5231-465e-8ab2-e240f7241a7b",
+        "tenantid": "a4858a1d-5361-433e-953b-3b1af8d72b3c",
+        "tenantmode": "dedicated",
+        "token-type": [
+          "xsuaa"
+        ],
+        "uaadomain": "authentication.ap11.hana.ondemand.com",
+        "uri": "https://destination-configuration.cfapps.ap11.hana.ondemand.com",
+        "url": "https://core-foundational-12982zqn.authentication.ap11.hana.ondemand.com",
+        "verificationkey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsAk3ulGEWVTRpSNNhvsX\nysPE82Xn7ZQIyWE0NX8+QHPD4jlLRXIRcgvsEN2jtZJk0v10iFvw3ul+slK9lKkG\ni8t1BZvXgrbeeY3mjRmc7R0GQk/7EV2Kw2ydAKlCgBNMQFGL1lOy1jOaynpihMI9\nftL3vSBekWXFYXuqnIw9xlevKREgvw2iAqyWjDe33jxidsrjNP7ywxnMBa9YcoDf\n0vdkEJD3qEkyAB9gbpDQvLu+Wuq7Sn669ByjTFaKblBx0qfgN3e+dZ8tOvgcPJqO\nUXye/cj6CX4QXiOwusAcDNUXFhM+T8qghf6yHknGc6xX3kW1nQ2VK/HK73aS6JPf\nXwIDAQAB\n-----END PUBLIC KEY-----",
+        "xsappname": "clonea301549b5231465e8ab2e240f7241a7b!b5156|destination-xsappname!b5"
+      },
+      "instance_guid": "a301549b-5231-465e-8ab2-e240f7241a7b",
+      "instance_name": "dest_treasuryai",
+      "label": "destination",
+      "name": "dest_treasuryai",
+      "plan": "lite",
+      "provider": null,
+      "syslog_drain_url": null,
+      "tags": [
+        "destination",
+        "conn",
+        "connsvc"
+      ],
+      "volume_mounts": []
+    }
+  ],
+  "xsuaa": [
+    {
+      "binding_guid": "5f4eb7a9-23bf-4a9a-a6f9-59cb8b534024",
+      "binding_name": null,
+      "credentials": {
+        "apiurl": "https://api.authentication.ap11.hana.ondemand.com",
+        "clientid": "sb-TreasuryAI-asst-srv!t5156",
+        "clientsecret": "5f4eb7a9-23bf-4a9a-a6f9-59cb8b534024$gXF7U5-gSx5j0bjyM9k1lnExWVb9OSDh5WFc4GBGT24=",
+        "credential-type": "binding-secret",
+        "identityzone": "core-foundational-12982zqn",
+        "identityzoneid": "a4858a1d-5361-433e-953b-3b1af8d72b3c",
+        "sburl": "https://internal-xsuaa.authentication.ap11.hana.ondemand.com",
+        "serviceInstanceId": "012cad97-d73e-48cd-84a6-3da1e0658bc0",
+        "subaccountid": "a4858a1d-5361-433e-953b-3b1af8d72b3c",
+        "tenantid": "a4858a1d-5361-433e-953b-3b1af8d72b3c",
+        "tenantmode": "dedicated",
+        "uaadomain": "authentication.ap11.hana.ondemand.com",
+        "url": "https://core-foundational-12982zqn.authentication.ap11.hana.ondemand.com",
+        "verificationkey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsAk3ulGEWVTRpSNNhvsX\nysPE82Xn7ZQIyWE0NX8+QHPD4jlLRXIRcgvsEN2jtZJk0v10iFvw3ul+slK9lKkG\ni8t1BZvXgrbeeY3mjRmc7R0GQk/7EV2Kw2ydAKlCgBNMQFGL1lOy1jOaynpihMI9\nftL3vSBekWXFYXuqnIw9xlevKREgvw2iAqyWjDe33jxidsrjNP7ywxnMBa9YcoDf\n0vdkEJD3qEkyAB9gbpDQvLu+Wuq7Sn669ByjTFaKblBx0qfgN3e+dZ8tOvgcPJqO\nUXye/cj6CX4QXiOwusAcDNUXFhM+T8qghf6yHknGc6xX3kW1nQ2VK/HK73aS6JPf\nXwIDAQAB\n-----END PUBLIC KEY-----",
+        "xsappname": "TreasuryAI-asst-srv!t5156",
+        "zoneid": "a4858a1d-5361-433e-953b-3b1af8d72b3c"
+      },
+      "instance_guid": "012cad97-d73e-48cd-84a6-3da1e0658bc0",
+      "instance_name": "xsuaa_treasuryai",
+      "label": "xsuaa",
+      "name": "xsuaa_treasuryai",
+      "plan": "application",
+      "provider": null,
+      "syslog_drain_url": null,
+      "tags": [
+        "xsuaa"
+      ],
+      "volume_mounts": []
+    }
+  ]
+}
+
+
+VCAP_APPLICATION: {
+  "application_id": "9b183cd0-be94-4210-9a99-9dbedd9df02e",
+  "application_name": "TreasuryAI-asst-V3",
+  "application_uris": [
+    "treasuryai-asst-srv6.cfapps.ap11.hana.ondemand.com"
+  ],
+  "cf_api": "https://api.cf.ap11.hana.ondemand.com",
+  "limits": {
+    "fds": 32768
+  },
+  "name": "TreasuryAI-asst-V3",
+  "organization_id": "26c32e52-821c-44fe-90a6-8fd81e52940d",
+  "organization_name": "Standard Chartered Bank_core-foundational-12982zqn",
+  "space_id": "f74efa5d-1c9f-41a4-b378-d8ff36595839",
+  "space_name": "GenAI_Finance",
+  "uris": [
+    "treasuryai-asst-srv6.cfapps.ap11.hana.ondemand.com"
+  ],
+  "users": null
+}
+
+
+User-Provided:
+DEPLOY_ATTRIBUTES: {
+  "app-content-digest" : "2EFD02900CDA3FEC29E9273878C1081F"
+}
+FLASK_APP: server.py
+FLASK_ENV: PRODUCTION
+
+Running Environment Variable Groups:
+LOG4J_FORMAT_MSG_NO_LOOKUPS: true
+
+Staging Environment Variable Groups:
+LOG4J_FORMAT_MSG_NO_LOOKUPS: true

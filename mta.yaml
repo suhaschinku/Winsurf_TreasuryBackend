@@ -1,0 +1,76 @@
+_schema-version: "3.3.0"
+ID: treasuryai-asst-v3
+version: 1.0.0
+description: TreasuryAI Assistant for Treasury Team
+
+parameters:
+  enable-parallel-deployments: true
+
+### ===========================================================
+### 📦 MODULE: Python Backend App (earningai-asst-srv)
+### ===========================================================
+modules:
+  - name: treasuryai-asst-v3
+    type: python
+    path: scripts
+    parameters:
+      instances: 1
+      memory: 8G
+      disk-quota: 10G
+      buildpack: python_buildpack
+      command: gunicorn server:app --bind 0.0.0.0:$PORT --workers 4 --threads 2 --timeout 120
+      #host: treasury-asst-v3
+      routes: 
+        - routes: treasuryai-asst-v3-${org}-${space}.${default-domain}
+      #domain: cfapps.ap11.hana.ondemand.com
+    properties:
+      FLASK_ENV: PRODUCTION
+      FLASK_APP: server.py
+    
+    # 🔗 Service bindings ( Instances)
+    requires:
+      - name: xsuaa_treasuryai
+      - name: dest_treasuryai
+      - name: applogs_treasuryai      
+
+    build-parameters:
+      builder: custom
+      build-result: .
+      ignore:
+        - __pycache__/
+        - node_modules/
+        - logs/
+      commands:
+        - pip install -r requirements.txt
+
+
+### ===========================================================
+### 🔐 RESOURCE: XSUAA Authentication
+### ===========================================================
+resources:
+  - name: xsuaa_treasuryai
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: xs-security.json  # ✅ Points to your XSUAA config file
+      #service-key-name: treasuryai-persistant-key
+      config:
+        xsappname: treasuryai-asst-v3
+
+# ### ===========================================================
+# ### 🗃️ RESOURCE: SAP Destination Services
+# ### ===========================================================
+  - name: dest_treasuryai
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+
+# ### 🗃️ RESOURCE: SAP Appliation Logs
+# ### ===========================================================
+  - name: applogs_treasuryai
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite
