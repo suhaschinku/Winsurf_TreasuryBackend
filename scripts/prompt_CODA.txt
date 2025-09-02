@@ -1,0 +1,448 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix pa: <http://example.org/prompt-analysis#> .
+@prefix inst: <http://example.org/instruction#> .
+@prefix kb: <http://example.org/knowledge-base#> .
+
+# ========================================
+# ONTOLOGY METADATA
+# ========================================
+
+pa:InstructionRAGOntology rdf:type owl:Ontology ;
+    dc:title "Instruction-Focused RAG Ontology"@en ;
+    dc:description "Crisp framework for instruction-aware RAG processing"@en ;
+    dc:creator "FinSight Intelligence Team" ;
+    dc:date "2025-07-17"^^xsd:date ;
+    owl:versionInfo "5.1.0" .
+
+# ========================================
+# CORE INSTRUCTION FRAMEWORK
+# ========================================
+
+inst:UserPrompt 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "User Prompt"@en ;
+    rdfs:comment "Complete user input requiring analysis and response"@en .
+
+inst:Instruction 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "User Instruction"@en ;
+    rdfs:comment "Specific instruction or requirement from user"@en .
+
+inst:InstructionType 
+    rdf:type owl:Class ;
+    rdfs:label "Instruction Type"@en .
+
+# Core Instruction Types
+inst:ComparisonInstruction rdfs:subClassOf inst:InstructionType ;
+    rdfs:label "Comparison Instruction"@en .
+
+inst:CalculationInstruction rdfs:subClassOf inst:InstructionType ;
+    rdfs:label "Calculation Instruction"@en .
+
+inst:FormatInstruction rdfs:subClassOf inst:InstructionType ;
+    rdfs:label "Format Instruction"@en .
+
+inst:RetrievalInstruction rdfs:subClassOf inst:InstructionType ;
+    rdfs:label "Retrieval Instruction"@en .
+
+inst:AnalysisInstruction rdfs:subClassOf inst:InstructionType ;
+    rdfs:label "Analysis Instruction"@en .
+
+inst:SourceInstruction rdfs:subClassOf inst:InstructionType ;
+    rdfs:label "Source Citation Instruction"@en .
+
+# ========================================
+# QUERY COMPONENTS
+# ========================================
+
+inst:QueryComponent 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Query Component"@en .
+
+inst:TargetEntity 
+    rdf:type owl:Class ;
+    rdfs:subClassOf inst:QueryComponent ;
+    rdfs:label "Target Entity"@en ;
+    rdfs:comment "Specific entity user is asking about"@en .
+
+inst:TimeFrame 
+    rdf:type owl:Class ;
+    rdfs:subClassOf inst:QueryComponent ;
+    rdfs:label "Time Frame"@en ;
+    rdfs:comment "Temporal scope of the query"@en .
+
+inst:Metric 
+    rdf:type owl:Class ;
+    rdfs:subClassOf inst:QueryComponent ;
+    rdfs:label "Metric"@en ;
+    rdfs:comment "Specific metric or measure requested"@en .
+
+inst:OutputFormat 
+    rdf:type owl:Class ;
+    rdfs:subClassOf inst:QueryComponent ;
+    rdfs:label "Output Format"@en ;
+    rdfs:comment "Required format for response"@en .
+
+# Output Format Types
+inst:TabularFormat rdfs:subClassOf inst:OutputFormat ;
+    rdfs:label "Tabular Format"@en .
+
+inst:TemplateFormat rdfs:subClassOf inst:OutputFormat ;
+    rdfs:label "Template Format"@en .
+
+inst:ListFormat rdfs:subClassOf inst:OutputFormat ;
+    rdfs:label "List Format"@en .
+
+inst:NarrativeFormat rdfs:subClassOf inst:OutputFormat ;
+    rdfs:label "Narrative Format"@en .
+
+# ========================================
+# KNOWLEDGE FRAMEWORK
+# ========================================
+
+kb:KnowledgeSource 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Knowledge Source"@en .
+
+kb:Document 
+    rdf:type owl:Class ;
+    rdfs:subClassOf kb:KnowledgeSource ;
+    rdfs:label "Document"@en .
+
+kb:DataPoint 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Data Point"@en ;
+    rdfs:comment "Specific data value from knowledge source"@en .
+
+kb:Citation 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Citation"@en ;
+    rdfs:comment "Reference to source document"@en .
+
+# ========================================
+# PROCESSING WORKFLOW
+# ========================================
+
+pa:InstructionAnalysis 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Instruction Analysis"@en ;
+    rdfs:comment "Analysis of user instructions and requirements"@en .
+
+pa:DataRetrieval 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Data Retrieval"@en ;
+    rdfs:comment "Retrieval of relevant data based on instructions"@en .
+
+pa:ResponseGeneration 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Response Generation"@en ;
+    rdfs:comment "Generation of response following user instructions"@en .
+
+pa:FormatApplication 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Format Application"@en ;
+    rdfs:comment "Application of required output format"@en .
+
+# ========================================
+# RESPONSE FRAMEWORK
+# ========================================
+
+pa:Response 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Generated Response"@en .
+
+pa:ResponseComponent 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Response Component"@en .
+
+pa:ComparisonResult 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ResponseComponent ;
+    rdfs:label "Comparison Result"@en .
+
+pa:CalculationResult 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ResponseComponent ;
+    rdfs:label "Calculation Result"@en .
+
+pa:AnalysisResult 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ResponseComponent ;
+    rdfs:label "Analysis Result"@en .
+
+pa:SourceReference 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ResponseComponent ;
+    rdfs:label "Source Reference"@en .
+
+# ========================================
+# CORE PROPERTIES
+# ========================================
+
+# Instruction Properties
+inst:hasInstruction 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range inst:Instruction ;
+    rdfs:label "Has Instruction"@en .
+
+inst:hasInstructionType 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain inst:Instruction ;
+    rdfs:range inst:InstructionType ;
+    rdfs:label "Has Instruction Type"@en .
+
+inst:requiresStrictAdherence 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:Instruction ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "Requires Strict Adherence"@en .
+
+# Query Component Properties
+inst:hasTargetEntity 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range inst:TargetEntity ;
+    rdfs:label "Has Target Entity"@en .
+
+inst:hasTimeFrame 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range inst:TimeFrame ;
+    rdfs:label "Has Time Frame"@en .
+
+inst:hasMetric 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range inst:Metric ;
+    rdfs:label "Has Metric"@en .
+
+inst:hasOutputFormat 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range inst:OutputFormat ;
+    rdfs:label "Has Output Format"@en .
+
+# Knowledge Properties
+kb:retrievesFrom 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:DataRetrieval ;
+    rdfs:range kb:KnowledgeSource ;
+    rdfs:label "Retrieves From"@en .
+
+kb:containsDataPoint 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain kb:Document ;
+    rdfs:range kb:DataPoint ;
+    rdfs:label "Contains Data Point"@en .
+
+kb:sourceDocument 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain kb:DataPoint ;
+    rdfs:range kb:Document ;
+    rdfs:label "Source Document"@en .
+
+# Response Properties
+pa:followsInstruction 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:Response ;
+    rdfs:range inst:Instruction ;
+    rdfs:label "Follows Instruction"@en .
+
+pa:includesComponent 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:Response ;
+    rdfs:range pa:ResponseComponent ;
+    rdfs:label "Includes Component"@en .
+
+pa:citesSources 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:Response ;
+    rdfs:range kb:Citation ;
+    rdfs:label "Cites Sources"@en .
+
+# Processing Properties
+pa:processesPrompt 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:InstructionAnalysis ;
+    rdfs:range inst:UserPrompt ;
+    rdfs:label "Processes Prompt"@en .
+
+pa:identifiesInstruction 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:InstructionAnalysis ;
+    rdfs:range inst:Instruction ;
+    rdfs:label "Identifies Instruction"@en .
+
+pa:appliesFormat 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:FormatApplication ;
+    rdfs:range inst:OutputFormat ;
+    rdfs:label "Applies Format"@en .
+
+# ========================================
+# DATATYPE PROPERTIES
+# ========================================
+
+# Text Properties
+inst:promptText 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range xsd:string ;
+    rdfs:label "Prompt Text"@en .
+
+inst:instructionText 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:Instruction ;
+    rdfs:range xsd:string ;
+    rdfs:label "Instruction Text"@en .
+
+inst:entityName 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:TargetEntity ;
+    rdfs:range xsd:string ;
+    rdfs:label "Entity Name"@en .
+
+inst:metricName 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:Metric ;
+    rdfs:range xsd:string ;
+    rdfs:label "Metric Name"@en .
+
+inst:timeFrameValue 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:TimeFrame ;
+    rdfs:range xsd:string ;
+    rdfs:label "Time Frame Value"@en .
+
+inst:templateStructure 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:TemplateFormat ;
+    rdfs:range xsd:string ;
+    rdfs:label "Template Structure"@en .
+
+# Knowledge Properties
+kb:documentTitle 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain kb:Document ;
+    rdfs:range xsd:string ;
+    rdfs:label "Document Title"@en .
+
+kb:dataValue 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain kb:DataPoint ;
+    rdfs:range xsd:string ;
+    rdfs:label "Data Value"@en .
+
+kb:citationText 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain kb:Citation ;
+    rdfs:range xsd:string ;
+    rdfs:label "Citation Text"@en .
+
+# Response Properties
+pa:responseText 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain pa:Response ;
+    rdfs:range xsd:string ;
+    rdfs:label "Response Text"@en .
+
+pa:comparisonResult 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain pa:ComparisonResult ;
+    rdfs:range xsd:string ;
+    rdfs:label "Comparison Result"@en .
+
+pa:calculationResult 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain pa:CalculationResult ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "Calculation Result"@en .
+
+# Temporal Properties
+pa:timestamp 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:UserPrompt ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "Timestamp"@en .
+
+# Priority Properties
+inst:priority 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain inst:Instruction ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Instruction Priority"@en .
+
+# ========================================
+# VALIDATION FRAMEWORK
+# ========================================
+
+pa:ValidationRule 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Validation Rule"@en .
+
+pa:InstructionCompliance 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ValidationRule ;
+    rdfs:label "Instruction Compliance"@en .
+
+pa:FormatCompliance 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ValidationRule ;
+    rdfs:label "Format Compliance"@en .
+
+pa:SourceCompliance 
+    rdf:type owl:Class ;
+    rdfs:subClassOf pa:ValidationRule ;
+    rdfs:label "Source Compliance"@en .
+
+pa:validates 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:ValidationRule ;
+    rdfs:range pa:Response ;
+    rdfs:label "Validates"@en .
+
+pa:isCompliant 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain pa:ValidationRule ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "Is Compliant"@en .
+
+# ========================================
+# WORKFLOW SEQUENCING
+# ========================================
+
+pa:WorkflowStep 
+    rdf:type owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Workflow Step"@en .
+
+pa:nextStep 
+    rdf:type owl:ObjectProperty ;
+    rdfs:domain pa:WorkflowStep ;
+    rdfs:range pa:WorkflowStep ;
+    rdfs:label "Next Step"@en .
+
+pa:stepOrder 
+    rdf:type owl:DatatypeProperty ;
+    rdfs:domain pa:WorkflowStep ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Step Order"@en .
